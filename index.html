@@ -1,81 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMK malahayati</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #B0CE88;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login Sekolah — Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#0f172a;
+    --accent1:#7c3aed;
+    --accent2:#06b6d4;
+    --card:#0b1220;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Arial,sans-serif;
+    background: radial-gradient(1200px 600px at 10% 20%, rgba(124,58,237,0.12), transparent 8%),
+                radial-gradient(900px 500px at 90% 80%, rgba(6,182,212,0.08), transparent 10%),
+                var(--bg1);
+    color:#e6eef8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow:hidden;
+  }
 
-        header {
-            background-color: #91C4C3;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+  /* animated floating shapes (SVG-like) */
+  .float-wrap{
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    z-index:0;
+  }
+  .blob{
+    position:absolute;
+    filter:blur(26px) saturate(120%);
+    mix-blend-mode:screen;
+    opacity:0.9;
+    transform-origin:center;
+    animation:float 8s ease-in-out infinite;
+  }
+  .blob.b1{width:420px;height:420px;left:-80px;top:-60px;background:linear-gradient(135deg,var(--accent1),#ef9);animation-duration:12s}
+  .blob.b2{width:300px;height:300px;right:-60px;bottom:-80px;background:linear-gradient(135deg,var(--accent2),#7ef);animation-duration:10s;animation-delay:1.2s}
+  .blob.b3{width:180px;height:180px;left:20%;bottom:10%;background:linear-gradient(135deg,#ff7a7a,#ffb07a);animation-duration:14s;animation-delay:2.6s}
+  @keyframes float{
+    0%{transform:translateY(0) rotate(0) scale(1)}
+    50%{transform:translateY(-18px) rotate(6deg) scale(1.04)}
+    100%{transform:translateY(0) rotate(0) scale(1)}
+  }
 
-        nav {
-            background: black;
-            padding: 10px;
-            text-align: center;
-        }
+  /* card */
+  .wrap{
+    z-index:1;
+    width:980px;
+    max-width:100%;
+    display:grid;
+    grid-template-columns:430px 1fr;
+    gap:36px;
+    align-items:center;
+    padding:36px;
+  }
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:16px;
+    padding:28px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
 
-        nav a {
-            color: black;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+  /* left - hero */
+  .hero{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .logo .mark{
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:grid;place-items:center;font-weight:700;color:white;box-shadow:0 6px 18px rgba(12,20,45,0.6);
+  }
+  h1{
+    margin:0;font-size:20px;
+  }
+  p.lead{margin:0;color:#bcd7ee;opacity:0.9}
 
-        section {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #41e05c;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>SMK Malahayati</h1>
-        <p>Website Resmi Sekolah</p>
-    </header>
-
-    <nav>
-        <a href="#">Beranda</a>
-        <a href="#">Profil</a>
-        <a href="#">Guru</a>
-        <a href="#">Galeri</a>
-        <a href="#">Kontak</a>
-    </nav>
-
-    <section>
-        <h2>Selamat Datang!</h2>
-        <p>Selamat datang di website resmi SD Negeri 01 Contoh. Kami berkomitmen memberikan pendidikan terbaik untuk masa depan anak-anak Indonesia.</p>
-
-        <h3>Visi</h3>
-        <p>Menjadi sekolah dasar unggulan dalam prestasi dan akhlak mulia.</p>
-
-        <h3>Misi</h3>
-        <ul>
-            <li>Menyelenggarakan pendidikan yang berkualitas.</li>
-            <li>Meningkatkan kompetensi guru dan siswa.</li>
-            <li>Menerapkan teknologi dalam pembelajaran.</li>
-        </ul>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 SD Negeri 01 Contoh | Dibuat oleh Tim IT Sekolah</p>
-    </footer>
-
-</body>
-</html>
+  .illustration{
+    margin-top:12px;border-radius:12px;overflow:hidden;height:220px;background:
+      linear-gradient(180deg, rgba(12,18,30,0.4), rgba(0,0,0,0.25));
+    position:relative;
+  }
+  /* little animated characters / lines in illustration */
+  .dot{
+    position:absolute;width:12px;height:12px;border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    animation:twinkle 3s infinite ea
