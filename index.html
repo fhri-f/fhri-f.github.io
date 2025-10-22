@@ -105,4 +105,196 @@
   .dot{
     position:absolute;width:12px;height:12px;border-radius:50%;
     background:rgba(255,255,255,0.12);
-    animation:twinkle 3s infinite ea
+    animation:twinkle 3s infinite ease-in-out;
+  }
+  .dot.a{left:12%;top:28%;animation-delay:0.2s}
+  .dot.b{left:36%;top:12%;animation-delay:0.6s}
+  .dot.c{left:64%;top:48%;animation-delay:1s}
+  .dot.d{left:82%;top:22%;animation-delay:1.6s}
+  @keyframes twinkle{
+    0%{transform:scale(0.9);opacity:0.5}
+    50%{transform:scale(1.6);opacity:1}
+    100%{transform:scale(0.9);opacity:0.5}
+  }
+
+  /* form */
+  form{display:flex;flex-direction:column;gap:12px}
+  label{font-size:13px;color:#bcd7ee;opacity:0.9}
+  input[type="text"], input[type="password"]{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.06);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    color:#eaf5ff;
+    outline:none;
+    font-size:15px;
+  }
+  .field{
+    position:relative;
+  }
+  .show-pass{
+    position:absolute;right:10px;top:50%;transform:translateY(-50%);
+    background:transparent;border:none;color:#9fbfe4;cursor:pointer;font-size:13px;
+  }
+  .actions{display:flex;align-items:center;gap:12px;margin-top:8px}
+  button.primary{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    border:none;color:white;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;
+    box-shadow: 0 8px 24px rgba(7,10,30,0.45);
+  }
+  button.secondary{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfe8ff;padding:9px 12px;border-radius:10px;cursor:pointer;
+  }
+  .note{font-size:13px;color:#9fbfe4;opacity:0.85}
+
+  /* right - sample credentials + animated list */
+  .side{
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .creds{display:grid;gap:10px}
+  .cred{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;
+  }
+  .chip{font-size:13px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:#dff7ff}
+  .copy{background:transparent;border:none;color:#aee9ff;cursor:pointer;font-weight:600}
+  .hint{font-size:13px;color:#bcd7ee;opacity:0.9}
+
+  .foot{margin-top:10px;font-size:13px;color:#9fbfe4;opacity:0.9}
+
+  @media (max-width:880px){
+    .wrap{grid-template-columns:1fr; padding:18px}
+    .illustration{height:160px}
+  }
+</style>
+</head>
+<body>
+  <div class="float-wrap" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="card hero" role="region" aria-label="Informasi Sekolah">
+      <div class="logo">
+        <div class="mark">S</div>
+        <div>
+          <h1>Portal Sekolah — Demo</h1>
+          <p class="lead">Masuk untuk melihat nilai, tugas, dan pengumuman.</p>
+        </div>
+      </div>
+
+      <div class="illustration" aria-hidden="true">
+        <div class="dot a"></div>
+        <div class="dot b"></div>
+        <div class="dot c"></div>
+        <div class="dot d"></div>
+        <!-- decorative -->
+      </div>
+
+      <div class="hint">Tips: Ini hanya demo. Untuk produksi gunakan backend yang aman dan password tersimpan ter-hash.</div>
+    </div>
+
+    <div class="card side" role="region" aria-label="Form login dan contoh akun">
+      <form id="loginForm" autocomplete="on">
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" inputmode="text" required placeholder="contoh: siswa01" />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="••••••••" />
+          <button type="button" class="show-pass" id="togglePass" aria-label="Tampilkan password">👁</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" type="submit">Masuk</button>
+          <button class="secondary" type="button" id="demoFill">Isi demo</button>
+        </div>
+
+        <div id="msg" class="note" role="status" aria-live="polite"></div>
+      </form>
+
+      <div>
+        <h3 style="margin:0 0 8px 0">Akun demo</h3>
+        <div class="creds" aria-hidden="false">
+          <div class="cred"><div><strong>Admin</strong><div style="font-size:13px;color:#bcd7ee">Lihat admin panel</div></div><div class="chip">admin</div><button class="copy" data-user="admin" data-pass="AdminDemo#2025">Salin</button></div>
+          <div class="cred"><div><strong>Guru</strong><div style="font-size:13px;color:#bcd7ee">Akses nilai & bahan ajar</div></div><div class="chip">guru01</div><button class="copy" data-user="guru01" data-pass="GuruDemo#2025">Salin</button></div>
+          <div class="cred"><div><strong>Siswa</strong><div style="font-size:13px;color:#bcd7ee">Lihat nilai & tugas</div></div><div class="chip">siswa01</div><button class="copy" data-user="siswa01" data-pass="SiswaDemo#2025">Salin</button></div>
+        </div>
+        <div class="foot">Gunakan tombol <em>Salin</em> untuk mengisi form. Ini hanya demo — jangan gunakan kata sandi ini di lingkungan nyata.</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/*
+  Demo client-side "authentication".
+  NOT FOR PRODUCTION: passwords are in plain-text here only for demo purposes.
+*/
+const demoUsers = {
+  admin: { role:'admin', pass: 'AdminDemo#2025' },
+  guru01: { role:'guru', pass: 'GuruDemo#2025' },
+  siswa01: { role:'siswa', pass: 'SiswaDemo#2025' }
+};
+
+const form = document.getElementById('loginForm');
+const msg = document.getElementById('msg');
+const usernameEl = document.getElementById('username');
+const passwordEl = document.getElementById('password');
+const togglePass = document.getElementById('togglePass');
+
+togglePass.addEventListener('click', () => {
+  const t = passwordEl.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordEl.setAttribute('type', t);
+  togglePass.textContent = t === 'text' ? '🙈' : '👁';
+});
+
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const user = btn.dataset.user;
+    const pass = btn.dataset.pass;
+    navigator.clipboard?.writeText(`username: ${user}\npassword: ${pass}`).catch(()=>{});
+    usernameEl.value = user;
+    passwordEl.value = pass;
+    msg.textContent = `Diisi otomatis: ${user} — password disalin ke clipboard (jika tersedia).`;
+    setTimeout(()=> msg.textContent = '', 4000);
+  });
+});
+
+document.getElementById('demoFill').addEventListener('click', ()=>{
+  usernameEl.value = 'siswa01';
+  passwordEl.value = 'SiswaDemo#2025';
+  msg.textContent = 'Form diisi akun siswa (demo).';
+  setTimeout(()=> msg.textContent = '', 3000);
+});
+
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const u = usernameEl.value.trim();
+  const p = passwordEl.value;
+  if(!u || !p){
+    msg.textContent = 'Masukkan username dan password.';
+    return;
+  }
+  const user = demoUsers[u];
+  if(!user){
+    msg.textContent = 'Akun tidak ditemukan (demo). Coba akun demo yang ada.';
+    return;
+  }
+  if(p === user.pass){
+    msg.textContent = `Berhasil masuk sebagai "${u}" (role: ${user.role}). Ini demo — tidak ada sesi backend.`;
+    // Simulate redirect
+    setTimeout(()=> {
+      alert(`Redirect: masuk sukses sebagai ${u} (role: ${user.role}).\n\nDi produksi, lakukan redirect ke dashboard di server.`);
+    }, 300);
+  } else {
+    msg.textContent = 'Password salah.';
+  }
+});
+</script>
+</body>
+</html>
