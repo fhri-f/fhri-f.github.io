@@ -3,101 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Form Username & Password</title>
-<style>
-  :root{
-    --bg:#0b1220;
-    --card:#0f1726;
-    --accent:#6d28d9;
-    --text:#e6eef8;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
-  body{
-    display:grid;
-    place-items:center;
-    background:linear-gradient(180deg,#071028 0%, #0f172a 100%);
-    color:var(--text);
-    padding:24px;
-  }
-
-  .card{
-    width:360px;
-    max-width:100%;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 8px 30px rgba(2,6,23,0.6);
-    border:1px solid rgba(255,255,255,0.04);
-  }
-
-  .brand{
-    display:flex;align-items:center;gap:12px;margin-bottom:12px;
-  }
-  .mark{
-    width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#06b6d4);
-    display:grid;place-items:center;font-weight:700;color:white;
-  }
-  h2{margin:0;font-size:16px}
-  p.sub{margin:4px 0 14px 0;color:#bcd7ee;font-size:13px}
-
-  label{display:block;font-size:13px;color:#cfe8ff;margin-bottom:6px}
-  input[type="text"], input[type="password"]{
-    width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);
-    background:rgba(255,255,255,0.02);color:var(--text);font-size:14px;outline:none;
-  }
-  .field{margin-bottom:12px;position:relative}
-  .toggle{
-    position:absolute;right:10px;top:50%;transform:translateY(-50%);
-    background:transparent;border:none;color:#aee9ff;cursor:pointer;font-size:14px;
-  }
-
-  .row{display:flex;gap:8px;align-items:center;margin-top:6px}
-  .btn{
-    flex:1;padding:10px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600;
-  }
-  .btn.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white}
-  .note{font-size:12px;color:#a9cfe6;margin-top:10px;text-align:center}
-
-  @media (max-width:420px){
-    .card{padding:16px}
-  }
-</style>
-</head>
-<body>
-  <div class="card" role="form" aria-label="Form username dan password">
-    <div class="brand">
-      <div class="mark">S</div>
-      <div>
-        <h2>Masuk</h2>
-        <p class="sub">Masukkan username dan password Anda</p>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="username">Username</label>
-      <input id="username" name="username" type="text" placeholder="contoh: siswa01" autocomplete="username" />
-    </div>
-
-    <div class="field">
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" />
-      <button type="button" class="toggle" id="togglePass" aria-label="Tampilkan password">👁️</button>
-    </div>
-
-    <div class="row">
-      <button class="btn primary" type="button" onclick="alert('Hanya tampilan UI — tidak ada autentikasi')">Masuk</button>
-    </div>
-
-    <div class="note">Ini hanya tampilan — tambahkan backend untuk autentikasi nyata.</div>
-  </div>
-
-  <!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Halaman Utama</title>
+<title>Web Saya</title>
 <style>
   :root{
     --bg:#0b1220;
@@ -115,20 +21,49 @@
     color:var(--text);
   }
 
-  /* ===== Navbar ===== */
+  /* ===== halaman disembunyikan/ditampilkan pakai class ===== */
+  .view{display:none}
+  .view.active{display:block}
+
+  /* ===== VIEW: LOGIN ===== */
+  #view-login.active{
+    display:grid;place-items:center;min-height:100vh;padding:24px;
+  }
+  .card{
+    width:360px;max-width:100%;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:20px;
+    box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    border:1px solid rgba(255,255,255,0.04);
+  }
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .mark{
+    width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:grid;place-items:center;font-weight:700;color:white;
+  }
+  h2{margin:0;font-size:16px}
+  p.sub{margin:4px 0 14px 0;color:#bcd7ee;font-size:13px}
+  label{display:block;font-size:13px;color:#cfe8ff;margin-bottom:6px}
+  input[type="text"], input[type="password"]{
+    width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);
+    background:rgba(255,255,255,0.02);color:var(--text);font-size:14px;outline:none;
+  }
+  .field{margin-bottom:12px;position:relative}
+  .toggle{
+    position:absolute;right:10px;top:50%;transform:translateY(-50%);
+    background:transparent;border:none;color:#aee9ff;cursor:pointer;font-size:14px;
+  }
+  .row{display:flex;gap:8px;align-items:center;margin-top:6px}
+  .btn{flex:1;padding:10px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:white}
+  .note{font-size:12px;color:#a9cfe6;margin-top:10px;text-align:center}
+  .error-msg{font-size:12.5px;color:#ff9d9d;margin-top:8px;text-align:center;min-height:16px}
+
+  /* ===== VIEW: HOME ===== */
   header{
     display:flex;align-items:center;justify-content:space-between;
-    padding:14px 24px;
-    border-bottom:1px solid rgba(255,255,255,0.06);
-    background:rgba(255,255,255,0.015);
-    position:sticky;top:0;backdrop-filter:blur(6px);
-    z-index:10;
-  }
-  .brand{display:flex;align-items:center;gap:12px}
-  .mark{
-    width:38px;height:38px;border-radius:8px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:grid;place-items:center;font-weight:700;color:white;font-size:15px;
+    padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.06);
+    background:rgba(255,255,255,0.015);position:sticky;top:0;backdrop-filter:blur(6px);
   }
   .brand-name{font-weight:700;font-size:15px}
   .user-area{display:flex;align-items:center;gap:14px}
@@ -139,123 +74,165 @@
     transition:background .15s ease, border-color .15s ease;
   }
   .logout-btn:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)}
-  .logout-btn:focus-visible, .card:focus-visible, .action-btn:focus-visible{
-    outline:2px solid var(--accent2);outline-offset:2px;
-  }
+  button:focus-visible, input:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 
-  /* ===== Layout ===== */
-  main{
-    max-width:1080px;margin:0 auto;padding:32px 24px 64px;
-  }
+  main{max-width:1080px;margin:0 auto;padding:32px 24px 64px}
   .welcome{margin-bottom:28px}
   .welcome h1{margin:0 0 6px 0;font-size:22px}
   .welcome p{margin:0;color:var(--muted);font-size:14px}
 
   .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-    gap:16px;
-    margin-bottom:32px;
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:16px;margin-bottom:32px;
   }
-  .card{
+  .stat-card{
     background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.06);
-    border-radius:12px;
-    padding:18px;
+    border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;
   }
-  .card h3{margin:0 0 6px 0;font-size:14px;color:var(--muted);font-weight:600}
-  .card .value{font-size:26px;font-weight:700}
+  .stat-card h3{margin:0 0 6px 0;font-size:14px;color:var(--muted);font-weight:600}
+  .stat-card .value{font-size:26px;font-weight:700}
 
   .section{
-    background:rgba(255,255,255,0.015);
-    border:1px solid rgba(255,255,255,0.06);
-    border-radius:12px;
-    padding:20px;
+    background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px;padding:20px;
   }
   .section h2{margin:0 0 12px 0;font-size:16px}
   .placeholder-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
   .placeholder-list li{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px 14px;border-radius:8px;
-    background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.04);
+    display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:8px;
+    background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);
     font-size:14px;color:var(--muted);
   }
   .placeholder-list li span.tag{
     font-size:11px;padding:3px 8px;border-radius:6px;
     background:rgba(109,40,217,0.18);color:#c9b3ff;
   }
-
-  .empty-hint{
-    margin-top:8px;font-size:12.5px;color:#7d97b3;
-  }
+  .empty-hint{margin-top:8px;font-size:12.5px;color:#7d97b3}
 
   @media (max-width:600px){
     header{padding:12px 16px}
     main{padding:24px 16px 48px}
     .user-name{display:none}
   }
+  @media (max-width:420px){
+    .card{padding:16px}
+  }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="brand">
-      <div class="mark">S</div>
-      <div class="brand-name">Nama Web Anda</div>
-    </div>
-    <div class="user-area">
-      <span class="user-name" id="userNameLabel">Halo, Pengguna</span>
-      <button class="logout-btn" id="logoutBtn">Keluar</button>
-    </div>
-  </header>
-
-  <main>
-    <div class="welcome">
-      <h1 id="welcomeTitle">Selamat datang!</h1>
-      <p>Ini halaman utama setelah berhasil masuk. Ganti bagian di bawah sesuai kebutuhan Anda.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Ringkasan 1</h3>
-        <div class="value">—</div>
+  <!-- ===== VIEW 1: LOGIN ===== -->
+  <div class="view active" id="view-login">
+    <div class="card" role="form" aria-label="Form username dan password">
+      <div class="brand">
+        <div class="mark">S</div>
+        <div>
+          <h2>Masuk</h2>
+          <p class="sub">Masukkan username dan password Anda</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Ringkasan 2</h3>
-        <div class="value">—</div>
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="contoh: siswa01" autocomplete="username" />
       </div>
-      <div class="card">
-        <h3>Ringkasan 3</h3>
-        <div class="value">—</div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        <button type="button" class="toggle" id="togglePass" aria-label="Tampilkan password">👁️</button>
       </div>
+      <div class="row">
+        <button class="btn primary" type="button" id="loginBtn">Masuk</button>
+      </div>
+      <div class="error-msg" id="errorMsg"></div>
+      <div class="note">Ini demo tampilan — belum ada autentikasi asli di server.</div>
     </div>
+  </div>
 
-    <div class="section">
-      <h2>Konten Utama</h2>
-      <ul class="placeholder-list">
-        <li>Contoh item 1 <span class="tag">placeholder</span></li>
-        <li>Contoh item 2 <span class="tag">placeholder</span></li>
-        <li>Contoh item 3 <span class="tag">placeholder</span></li>
-      </ul>
-      <p class="empty-hint">Bagian ini masih placeholder — beri tahu saya nanti isi apa yang Anda mau tampilkan di sini (misalnya daftar produk, jadwal, catatan, dsb).</p>
-    </div>
-  </main>
+  <!-- ===== VIEW 2: HALAMAN UTAMA ===== -->
+  <div class="view" id="view-home">
+    <header>
+      <div class="brand">
+        <div class="mark">S</div>
+        <div class="brand-name">Nama Web Anda</div>
+      </div>
+      <div class="user-area">
+        <span class="user-name" id="userNameLabel">Halo, Pengguna</span>
+        <button class="logout-btn" id="logoutBtn">Keluar</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="welcome">
+        <h1 id="welcomeTitle">Selamat datang!</h1>
+        <p>Ini halaman utama setelah berhasil masuk. Ganti bagian di bawah sesuai kebutuhan Anda.</p>
+      </div>
+
+      <div class="grid">
+        <div class="stat-card"><h3>Ringkasan 1</h3><div class="value">—</div></div>
+        <div class="stat-card"><h3>Ringkasan 2</h3><div class="value">—</div></div>
+        <div class="stat-card"><h3>Ringkasan 3</h3><div class="value">—</div></div>
+      </div>
+
+      <div class="section">
+        <h2>Konten Utama</h2>
+        <ul class="placeholder-list">
+          <li>Contoh item 1 <span class="tag">placeholder</span></li>
+          <li>Contoh item 2 <span class="tag">placeholder</span></li>
+          <li>Contoh item 3 <span class="tag">placeholder</span></li>
+        </ul>
+        <p class="empty-hint">Bagian ini masih placeholder — beri tahu saya nanti isi apa yang Anda mau tampilkan di sini (misalnya daftar produk, jadwal, catatan, dsb).</p>
+      </div>
+    </main>
+  </div>
 
 <script>
-  // Ambil username yang disimpan saat login (demo, belum ada backend nyata)
-  const username = localStorage.getItem('username');
-  if (username) {
-    document.getElementById('userNameLabel').textContent = 'Halo, ' + username;
-    document.getElementById('welcomeTitle').textContent = 'Selamat datang, ' + username + '!';
-  } else {
-    // Kalau belum login, arahkan kembali ke halaman login
-    window.location.href = 'login.html';
+  const viewLogin = document.getElementById('view-login');
+  const viewHome  = document.getElementById('view-home');
+
+  function showView(view){
+    [viewLogin, viewHome].forEach(v => v.classList.remove('active'));
+    view.classList.add('active');
   }
 
+  // Toggle tampilkan/sembunyikan password
+  const pw = document.getElementById('password');
+  const toggle = document.getElementById('togglePass');
+  toggle.addEventListener('click', () => {
+    const t = pw.getAttribute('type') === 'password' ? 'text' : 'password';
+    pw.setAttribute('type', t);
+    toggle.textContent = t === 'text' ? '🙈' : '👁️';
+  });
+
+  // Proses login (demo: belum ada backend, hanya validasi field terisi)
+  const usernameInput = document.getElementById('username');
+  const loginBtn = document.getElementById('loginBtn');
+  const errorMsg = document.getElementById('errorMsg');
+
+  function attemptLogin(){
+    const uname = usernameInput.value.trim();
+    const passw = pw.value;
+
+    if (!uname || !passw) {
+      errorMsg.textContent = 'Username dan password wajib diisi.';
+      return;
+    }
+    errorMsg.textContent = '';
+
+    document.getElementById('userNameLabel').textContent = 'Halo, ' + uname;
+    document.getElementById('welcomeTitle').textContent = 'Selamat datang, ' + uname + '!';
+    showView(viewHome);
+  }
+
+  loginBtn.addEventListener('click', attemptLogin);
+  pw.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  usernameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+  // Logout: kembali ke tampilan login
   document.getElementById('logoutBtn').addEventListener('click', () => {
-    localStorage.removeItem('username');
-    window.location.href = 'login.html';
+    usernameInput.value = '';
+    pw.value = '';
+    errorMsg.textContent = '';
+    showView(viewLogin);
   });
 </script>
 </body>
