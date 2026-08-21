@@ -25,10 +25,18 @@
   .view{display:none}
   .view.active{display:block}
 
-  /* ===== VIEW: LOGIN ===== */
-  #view-login.active{
+  /* ===== VIEW: LOGIN & REGISTER ===== */
+  #view-login.active, #view-register.active{
     display:grid;place-items:center;min-height:100vh;padding:24px;
   }
+  .switch-link{
+    font-size:12.5px;color:#a9cfe6;margin-top:12px;text-align:center;
+  }
+  .switch-link button{
+    background:none;border:none;color:#8fd8ff;cursor:pointer;font-size:12.5px;
+    text-decoration:underline;padding:0;font-weight:600;
+  }
+  .success-msg{font-size:12.5px;color:#8ef0b0;margin-top:8px;text-align:center;min-height:16px}
   .card{
     width:360px;max-width:100%;
     background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -121,8 +129,41 @@
 </head>
 <body>
 
-  <!-- ===== VIEW 1: LOGIN ===== -->
-  <div class="view active" id="view-login">
+  <!-- ===== VIEW 1: DAFTAR AKUN ===== -->
+  <div class="view active" id="view-register">
+    <div class="card" role="form" aria-label="Form daftar akun">
+      <div class="brand">
+        <div class="mark">S</div>
+        <div>
+          <h2>Buat Akun</h2>
+          <p class="sub">Daftar dulu sebelum masuk</p>
+        </div>
+      </div>
+      <div class="field">
+        <label for="regUsername">Username</label>
+        <input id="regUsername" type="text" placeholder="contoh: siswa01" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="regPassword">Password</label>
+        <input id="regPassword" type="password" placeholder="••••••••" autocomplete="new-password" />
+        <button type="button" class="toggle" id="toggleRegPass" aria-label="Tampilkan password" aria-pressed="false">👁️</button>
+      </div>
+      <div class="field">
+        <label for="regPasswordConfirm">Ulangi Password</label>
+        <input id="regPasswordConfirm" type="password" placeholder="••••••••" autocomplete="new-password" />
+      </div>
+      <div class="row">
+        <button class="btn primary" type="button" id="registerBtn">Daftar</button>
+      </div>
+      <div class="error-msg" id="regErrorMsg" role="alert" aria-live="polite"></div>
+      <div class="success-msg" id="regSuccessMsg" role="status" aria-live="polite"></div>
+      <div class="switch-link">Sudah punya akun? <button type="button" id="goToLogin">Masuk di sini</button></div>
+      <div class="note">Ini demo tampilan — data akun disimpan di browser Anda saja.</div>
+    </div>
+  </div>
+
+  <!-- ===== VIEW 2: LOGIN ===== -->
+  <div class="view" id="view-login">
     <div class="card" role="form" aria-label="Form username dan password">
       <div class="brand">
         <div class="mark">S</div>
@@ -144,6 +185,7 @@
         <button class="btn primary" type="button" id="loginBtn">Masuk</button>
       </div>
       <div class="error-msg" id="errorMsg" role="alert" aria-live="polite"></div>
+      <div class="switch-link">Belum punya akun? <button type="button" id="goToRegister">Daftar di sini</button></div>
       <div class="note">Ini demo tampilan — belum ada autentikasi asli di server.</div>
     </div>
   </div>
@@ -153,7 +195,7 @@
     <header>
       <div class="brand">
         <div class="mark">S</div>
-        <div class="brand-name">Nama Web Anda</div>
+        <div class="brand-name">Welcome</div>
       </div>
       <div class="user-area">
         <span class="user-name" id="userNameLabel">Halo, Pengguna</span>
@@ -163,52 +205,140 @@
 
     <main>
       <div class="welcome">
-        <h1 id="welcomeTitle">Selamat datang!</h1>
-        <p>Ini halaman utama setelah berhasil masuk. Ganti bagian di bawah sesuai kebutuhan Anda.</p>
+        <h1 id="welcomeTitle">Hai!</h1>
+        <p>Halaman Utama.</p>
       </div>
 
       <div class="grid">
-        <div class="stat-card"><h3>Ringkasan 1</h3><div class="value">—</div></div>
-        <div class="stat-card"><h3>Ringkasan 2</h3><div class="value">—</div></div>
-        <div class="stat-card"><h3>Ringkasan 3</h3><div class="value">—</div></div>
+        <div class="stat-card"><h3>Opsi 1</h3><div class="value">—</div></div>
+        <div class="stat-card"><h3>Opsi 2</h3><div class="value">—</div></div>
+        <div class="stat-card"><h3>Opsi 3</h3><div class="value">—</div></div>
       </div>
 
       <div class="section">
         <h2>Konten Utama</h2>
         <ul class="placeholder-list">
-          <li>Contoh item 1 <span class="tag">placeholder</span></li>
-          <li>Contoh item 2 <span class="tag">placeholder</span></li>
-          <li>Contoh item 3 <span class="tag">placeholder</span></li>
+          <li>tentang <span class="tag">placeholder</span></li>
+          <li>Daftar <span class="tag">placeholder</span></li>
+          <li>isi <span class="tag">placeholder</span></li>
         </ul>
-        <p class="empty-hint">Bagian ini masih placeholder — beri tahu saya nanti isi apa yang Anda mau tampilkan di sini (misalnya daftar produk, jadwal, catatan, dsb).</p>
+        <p class="empty-hint">web masih dalam pengembangan</p>
       </div>
     </main>
   </div>
 
 <script>
-  const viewLogin = document.getElementById('view-login');
-  const viewHome  = document.getElementById('view-home');
+  const viewRegister = document.getElementById('view-register');
+  const viewLogin    = document.getElementById('view-login');
+  const viewHome     = document.getElementById('view-home');
 
   function showView(view){
-    [viewLogin, viewHome].forEach(v => v.classList.remove('active'));
+    [viewRegister, viewLogin, viewHome].forEach(v => v.classList.remove('active'));
     view.classList.add('active');
   }
 
-  // Toggle tampilkan/sembunyikan password
-  const pw = document.getElementById('password');
-  const toggle = document.getElementById('togglePass');
-  toggle.addEventListener('click', () => {
-    const t = pw.getAttribute('type') === 'password' ? 'text' : 'password';
-    pw.setAttribute('type', t);
-    toggle.textContent = t === 'text' ? '🙈' : '👁️';
-    toggle.setAttribute('aria-pressed', t === 'text' ? 'true' : 'false');
-    toggle.setAttribute('aria-label', t === 'text' ? 'Sembunyikan password' : 'Tampilkan password');
+  // ===== Penyimpanan akun (demo: localStorage, bukan autentikasi asli) =====
+  function getAccounts(){
+    try {
+      return JSON.parse(localStorage.getItem('accounts') || '{}');
+    } catch(e) {
+      return {};
+    }
+  }
+  function saveAccounts(accounts){
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+  }
+
+  // ===== Helper: pasang toggle tampil/sembunyikan password =====
+  function setupToggle(toggleBtn, inputEl){
+    toggleBtn.addEventListener('click', () => {
+      const t = inputEl.getAttribute('type') === 'password' ? 'text' : 'password';
+      inputEl.setAttribute('type', t);
+      toggleBtn.textContent = t === 'text' ? '🙈' : '👁️';
+      toggleBtn.setAttribute('aria-pressed', t === 'text' ? 'true' : 'false');
+      toggleBtn.setAttribute('aria-label', t === 'text' ? 'Sembunyikan password' : 'Tampilkan password');
+    });
+  }
+  function resetToggle(toggleBtn, inputEl){
+    inputEl.setAttribute('type', 'password');
+    toggleBtn.textContent = '👁️';
+    toggleBtn.setAttribute('aria-pressed', 'false');
+    toggleBtn.setAttribute('aria-label', 'Tampilkan password');
+  }
+
+  // ===== VIEW: DAFTAR AKUN =====
+  const regUsername = document.getElementById('regUsername');
+  const regPassword = document.getElementById('regPassword');
+  const regPasswordConfirm = document.getElementById('regPasswordConfirm');
+  const toggleRegPass = document.getElementById('toggleRegPass');
+  const registerBtn = document.getElementById('registerBtn');
+  const regErrorMsg = document.getElementById('regErrorMsg');
+  const regSuccessMsg = document.getElementById('regSuccessMsg');
+
+  setupToggle(toggleRegPass, regPassword);
+
+  function attemptRegister(){
+    const uname = regUsername.value.trim();
+    const passw = regPassword.value;
+    const passw2 = regPasswordConfirm.value;
+    regSuccessMsg.textContent = '';
+
+    if (!uname || !passw || !passw2) {
+      regErrorMsg.textContent = 'Semua kolom wajib diisi.';
+      return;
+    }
+    if (passw.length < 4) {
+      regErrorMsg.textContent = 'Password minimal 4 karakter.';
+      return;
+    }
+    if (passw !== passw2) {
+      regErrorMsg.textContent = 'Password dan ulangi password tidak sama.';
+      return;
+    }
+
+    const accounts = getAccounts();
+    if (accounts[uname]) {
+      regErrorMsg.textContent = 'Username sudah dipakai, coba yang lain.';
+      return;
+    }
+
+    accounts[uname] = passw;
+    saveAccounts(accounts);
+    regErrorMsg.textContent = '';
+    regSuccessMsg.textContent = 'Akun berhasil dibuat! Silakan masuk.';
+
+    // Pindah ke login, isi otomatis username-nya
+    setTimeout(() => {
+      regUsername.value = '';
+      regPassword.value = '';
+      regPasswordConfirm.value = '';
+      regSuccessMsg.textContent = '';
+      resetToggle(toggleRegPass, regPassword);
+      usernameInput.value = uname;
+      showView(viewLogin);
+      pw.focus();
+    }, 900);
+  }
+
+  registerBtn.addEventListener('click', attemptRegister);
+  [regUsername, regPassword, regPasswordConfirm].forEach(el => {
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptRegister(); });
   });
 
-  // Proses login (demo: belum ada backend, hanya validasi field terisi)
+  document.getElementById('goToLogin').addEventListener('click', () => {
+    regErrorMsg.textContent = '';
+    regSuccessMsg.textContent = '';
+    showView(viewLogin);
+  });
+
+  // ===== VIEW: LOGIN =====
   const usernameInput = document.getElementById('username');
+  const pw = document.getElementById('password');
+  const toggle = document.getElementById('togglePass');
   const loginBtn = document.getElementById('loginBtn');
   const errorMsg = document.getElementById('errorMsg');
+
+  setupToggle(toggle, pw);
 
   function attemptLogin(){
     const uname = usernameInput.value.trim();
@@ -216,6 +346,12 @@
 
     if (!uname || !passw) {
       errorMsg.textContent = 'Username dan password wajib diisi.';
+      return;
+    }
+
+    const accounts = getAccounts();
+    if (!accounts[uname] || accounts[uname] !== passw) {
+      errorMsg.textContent = 'Username atau password salah.';
       return;
     }
     errorMsg.textContent = '';
@@ -229,14 +365,16 @@
   pw.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
   usernameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
 
-  // Logout: kembali ke tampilan login
+  document.getElementById('goToRegister').addEventListener('click', () => {
+    errorMsg.textContent = '';
+    showView(viewRegister);
+  });
+
+  // ===== VIEW: LOGOUT =====
   document.getElementById('logoutBtn').addEventListener('click', () => {
     usernameInput.value = '';
     pw.value = '';
-    pw.setAttribute('type', 'password');
-    toggle.textContent = '👁️';
-    toggle.setAttribute('aria-pressed', 'false');
-    toggle.setAttribute('aria-label', 'Tampilkan password');
+    resetToggle(toggle, pw);
     errorMsg.textContent = '';
     showView(viewLogin);
     usernameInput.focus();
