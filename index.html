@@ -253,7 +253,7 @@
     toggleBtn.addEventListener('click', () => {
       const t = inputEl.getAttribute('type') === 'password' ? 'text' : 'password';
       inputEl.setAttribute('type', t);
-      toggleBtn.textContent = t === 'text' ? '🙈' : '👁️';
+      toggleBtn.textContent = t === 'text' ? 'X' : '👁️';
       toggleBtn.setAttribute('aria-pressed', t === 'text' ? 'true' : 'false');
       toggleBtn.setAttribute('aria-label', t === 'text' ? 'Sembunyikan password' : 'Tampilkan password');
     });
